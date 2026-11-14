@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Racing Wearline</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0b0d10">
+<meta name="apple-mobile-web-app-title" content="Racing Wearline">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef0f2;--card:#fff;--ink:#101318;--mut:#5d6773;--line:#d5d9de;--acc:#ff6a13;--at:#b84a00;--red:#d92b20;--amb:#c77d00;--ok:#1f8f55;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0d10;--card:#14181d;--ink:#eceff3;--mut:#8a95a1;--line:#272f38;--at:#ff8a3d;--red:#ff5247;--amb:#ffb020;--ok:#38d27f}}
+:root[data-theme="dark"]{--bg:#0b0d10;--card:#14181d;--ink:#eceff3;--mut:#8a95a1;--line:#272f38;--at:#ff8a3d;--red:#ff5247;--amb:#ffb020;--ok:#38d27f}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 15px/1.4 Barlow,system-ui,sans-serif;background-image:linear-gradient(45deg,rgba(128,128,128,.07) 25%,transparent 25% 75%,rgba(128,128,128,.07) 75%);background-size:6px 6px}
+.chk{height:12px;background:conic-gradient(#000 25%,#fff 0 50%,#000 0 75%,#fff 0) 0 0/24px 24px;border-bottom:2px solid var(--acc)}
+.wrap{max-width:780px;margin:0 auto;padding:14px}
+h1,h2,h3{font-family:'Barlow Condensed','Arial Narrow',sans-serif;margin:0;text-transform:uppercase;letter-spacing:.6px}
+h1{font-size:38px;font-weight:700;font-style:italic}h1 span{color:var(--at)}h2{font-size:22px;font-weight:600}
+header{display:flex;justify-content:space-between;align-items:center}
+nav{display:flex;gap:6px;margin:12px 0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:1px solid var(--line);background:var(--card);padding:8px 14px;border-radius:6px;font-weight:600;border-bottom-width:3px}
+button:active{transform:translateY(2px);border-bottom-width:1px}
+button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button.pri{background:var(--acc);color:#000;border-color:#000}
+button.sm{padding:4px 10px;font-size:13px}button.x{color:var(--red)}
+nav button{flex:1;font:700 19px 'Barlow Condensed','Arial Narrow',sans-serif;text-transform:uppercase;letter-spacing:.8px}
+input,select,textarea{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%;min-width:0}
+label{font-size:13px;color:var(--mut);display:grid;gap:3px}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:12px;margin-bottom:14px;display:grid;gap:8px;box-shadow:0 2px 0 var(--line)}
+.row{display:flex;gap:8px;align-items:center}.sp{justify-content:space-between}.wr{flex-wrap:wrap}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sub{color:var(--mut);font-size:13px}.empty{color:var(--mut);font-size:14px}
+.banner{background:var(--red);color:#fff;border-left:10px solid var(--acc);padding:10px 14px;border-radius:6px;margin-bottom:14px;font-weight:600}
+section{margin:18px 0}
+.sh{display:flex;align-items:baseline;gap:8px;border-bottom:2px solid var(--ink);padding-bottom:4px;margin-bottom:8px}.cnt{color:var(--mut);font-weight:600}
+.t,.pt{border-left:5px solid var(--ok);padding:8px 10px;margin-bottom:8px;background:var(--card);border-radius:4px;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pt.w,.t.w{border-left-color:var(--amb)}.pt.u,.t.u{border-left-color:var(--red)}
+.due{font-weight:700;font-family:'Barlow Condensed',sans-serif;font-size:20px}.pt.u .due,.t.u .due{color:var(--red)}.pt.w .due,.t.w .due{color:var(--amb)}
+.lights{display:flex;gap:4px;margin:6px 0}.lights i{flex:1;height:10px;border-radius:5px;background:var(--line)}
+.lights .g{background:var(--ok);box-shadow:0 0 6px var(--ok)}.lights .a{background:var(--amb);box-shadow:0 0 6px var(--amb)}.lights .r{background:var(--red);box-shadow:0 0 6px var(--red)}
+.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat div{background:#0d1014;color:#eceff3;border-radius:4px;padding:6px 10px;border:1px solid #000;box-shadow:inset 0 2px 6px rgba(0,0,0,.6)}
+.stat b{display:block;font:700 30px/1 'Barlow Condensed',sans-serif;font-variant-numeric:tabular-nums;color:#ff8a3d}.stat span{color:#9aa5b1}
+.big{font:700 54px/1 'Barlow Condensed',sans-serif;color:var(--at)}
+.week{display:grid;grid-template-columns:repeat(7,minmax(130px,1fr));gap:8px;overflow-x:auto;padding-bottom:6px}
+.day{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px;min-height:100px}.day.today{border:2px solid var(--ink)}
+.day h3{font-size:16px;margin-bottom:6px}
+.chip{font-size:12.5px;border-left:3px solid var(--ok);padding:3px 6px;margin-bottom:5px;background:var(--bg);border-radius:3px}.chip.u{border-color:var(--red)}
+.hist{padding:6px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:8px}
+@media (prefers-reduced-motion:no-preference){.banner{animation:bl 1.6s ease-in-out infinite}@keyframes bl{50%{filter:brightness(1.2)}}}
+h1{position:relative;font-size:46px;line-height:1;text-shadow:0 2px 0 rgba(0,0,0,.25)}
+h1::after{content:"";display:block;height:6px;width:160px;margin-top:6px;background:repeating-linear-gradient(115deg,var(--acc) 0 14px,transparent 14px 20px)}
+nav button{clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);border-width:0}nav button.on{background:var(--acc);color:#000}
+.sh h2{position:relative;padding-left:18px}.sh h2::before{content:"";position:absolute;left:0;top:3px;bottom:3px;width:8px;background:var(--acc);transform:skewX(-20deg)}
+button.pri{clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);border-color:transparent;padding-left:18px;padding-right:18px}
+.panel.car{position:relative;overflow:hidden;border-top:4px solid var(--acc)}.panel.car>*{position:relative}
+.panel.car>.num{position:absolute;right:8px;top:-6px;font:700 120px/1 'Barlow Condensed',sans-serif;font-style:italic;color:transparent;-webkit-text-stroke:2px var(--line);pointer-events:none}
+.ring{--c:var(--ok);width:64px;height:64px;border-radius:50%;background:conic-gradient(var(--c) calc(var(--p)*1%),var(--line) 0);display:grid;place-items:center;flex:none;box-shadow:0 0 14px color-mix(in srgb,var(--c) 40%,transparent)}
+.ring b{width:50px;height:50px;border-radius:50%;background:var(--card);display:grid;place-items:center;font:700 19px 'Barlow Condensed',sans-serif}.ring.w{--c:var(--amb)}.ring.u{--c:var(--red)}
+.board{background:#0d1014 repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0 8px,transparent 8px 16px);color:#eceff3;border:1px solid #000;border-left:8px solid var(--acc)}
+.board .sub{color:#9aa5b1}.board .big{color:#ff8a3d;font-size:76px;text-shadow:0 0 18px rgba(255,138,61,.35)}.board .chip{background:#1a1f26;color:#eceff3}.board button.x{color:#ff7a70}
+.pt.u{background:linear-gradient(90deg,color-mix(in srgb,var(--red) 14%,transparent),transparent 60%),var(--card)}
+@media (prefers-reduced-motion:no-preference){.pt.u .lights .r{animation:bl 1s ease-in-out infinite}}
+.note{border-left:6px solid var(--acc)}
+</style></head><body>
+<div class="chk"></div>
+<div class="wrap">
+<header><h1>Racing <span>Wearline</span></h1><button id="snd" class="sm">Sound off</button></header>
+<nav><button data-v="s" class="on">Schedule</button><button data-v="c">Vehicles</button><button data-v="l">Log</button></nav>
+<main id="app"></main></div>
+<script>
+var H=36e5,D=864e5,view='s',arm=null,open={},sound=false,ctx=null,beeped={};
+var TY=[['car','Racing car'],['kart','Go-kart'],['bike','Motorcycle'],['quad','ATV / quad'],['other','Other vehicle']];
+var PT={car:[['Brake pads',{km:800}],['Brake discs',{km:2500}],['Tyre set',{km:250}],['Engine oil',{hrs:10}],['Gearbox oil',{km:1500}],['Clutch',{km:4000}],['Brake fluid',{km:1000,days:180}],['Engine rebuild',{hrs:60}],['Harness',{days:1825}],['Fire extinguisher',{days:730}]],
+kart:[['Chain',{hrs:10}],['Sprocket',{hrs:20}],['Spark plug',{hrs:5}],['Clutch',{hrs:20}],['Brake pads',{hrs:15}],['Tyre set',{hrs:6}],['Air filter',{hrs:5}],['Piston and ring',{hrs:15}],['Engine top-end rebuild',{hrs:25}],['Axle bearings',{hrs:50}]],
+bike:[['Chain and sprockets',{km:3000}],['Brake pads',{km:1500}],['Tyre set',{km:1200}],['Engine oil',{hrs:10}],['Air filter',{hrs:15}],['Brake fluid',{days:180}],['Coolant',{days:730}],['Fork oil',{hrs:50}],['Helmet',{days:1825}]],
+quad:[['Chain',{hrs:50}],['Brake pads',{hrs:40}],['Tyre set',{hrs:100}],['Engine oil',{hrs:15}],['Air filter',{hrs:10}],['Drive belt',{hrs:60}],['Spark plug',{hrs:50}]],
+other:[['Engine oil',{hrs:10}],['Air filter',{hrs:10}],['Brake pads',{km:1000}],['Tyre set',{km:1000}],['Battery',{days:730}]]};
+var CK={car:['Check tyre pressures','Torque wheel nuts','Check brakes and fluid level','Check engine oil and coolant','Check harness and seat mounts','Fuel and fire extinguisher check'],
+kart:['Check chain tension and lubrication','Check tyre pressures','Check wheel nuts and axle','Check brakes','Check fuel and throttle','Check steering and bolts'],
+bike:['Check tyre pressures','Check chain tension and oil','Check brakes and fluid level','Check engine oil and coolant','Check bolts and safety wire','Check fuel and kill switch'],
+quad:['Check tyre pressures','Check chain or belt','Check brakes','Check engine oil and coolant','Check bolts and steering','Check fuel and kill switch'],
+other:['Check tyre pressures','Check brakes','Check oil and fluids','Check bolts and steering','Check fuel']};
+function pre(c){return PT[(c&&c.type)||'car']||PT.car}
+function tname(c){return(TY.find(function(t){return t[0]==(c.type||'car')})||TY[0])[1]}
+var MT=[['km','km'],['laps','laps'],['hrs','h']];
+function seed(){var n=Date.now();return{cars:[{id:1,type:'kart',name:'Kart 7',num:'7',km:310,laps:620,hrs:14,parts:[{id:2,name:'Chain',fit:{km:240,laps:480,hrs:7,t:n-14*D},lim:{hrs:10},price:35},{id:3,name:'Brake pads',fit:{km:100,laps:200,hrs:2,t:n-40*D},lim:{hrs:15},price:40},{id:4,name:'Tyre set',fit:{km:300,laps:600,hrs:13,t:n-3*D},lim:{hrs:6},price:180}]},{id:5,type:'car',name:'GT4 Sprint',num:'44',km:1240,laps:310,hrs:22,parts:[{id:6,name:'Brake pads (front)',fit:{km:480,laps:120,hrs:9,t:n-20*D},lim:{km:800},price:320},{id:7,name:'Harness',fit:{km:0,laps:0,hrs:0,t:n-700*D},lim:{},by:n+400*D,price:450}]}],tasks:[{id:8,cid:1,title:'Check chain tension',due:n+1.5*H,rep:0}],events:[{id:9,cid:5,name:'Round 3, Spa',date:n+6*D,km:180}],log:[]}}
+var S;try{S=JSON.parse(localStorage.getItem('rwl'))}catch(e){}
+if(!S||!S.cars)S=seed();
+function fix(){S.tasks=S.tasks||[];S.events=S.events||[];S.log=S.log||[]}fix();
+function save(){try{localStorage.setItem('rwl',JSON.stringify(S))}catch(e){}}
+function uid(){return Date.now()*1000+Math.floor(Math.random()*1000)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function g(i){return document.getElementById(i).value}
+function iso(x){return new Date(x-new Date(x).getTimezoneOffset()*6e4).toISOString().slice(0,10)}
+function dms(v){return v?new Date(v+'T00:00').getTime():0}
+function fmt(x){return (Math.round(x*10)/10).toLocaleString()}
+function money(x){return '$'+(x||0).toLocaleString([], {minimumFractionDigits:2,maximumFractionDigits:2})}
+function rel(d){var m=Math.round(d/6e4),a=Math.abs(m),t=a<60?a+' min':Math.floor(a/60)+'h '+(a%60)+'m';return m<0?t+' overdue':'in '+t}
+function car(i){return S.cars.find(function(c){return c.id==i})}
+function cname(c){return c?'#'+esc(c.num||'-')+' '+esc(c.name):''}
+function logIt(cid,t,c){S.log.push({t:Date.now(),cid:cid,txt:t,cost:c||0})}
+var tEl=document.createElement('div');tEl.setAttribute('role','status');tEl.style.cssText='display:none;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:9;background:var(--ink);color:var(--bg);padding:12px 14px;border-radius:6px;font-weight:600;max-width:560px;margin:0 auto';document.body.appendChild(tEl);
+function msg(m){tEl.textContent=m;tEl.style.display='block';clearTimeout(window._tt);window._tt=setTimeout(function(){tEl.style.display='none'},4500)}
+function pst(c,p){var r={pct:0,t:[]};MT.forEach(function(m){var l=p.lim&&p.lim[m[0]];if(l>0){var u=c[m[0]]-p.fit[m[0]];r.pct=Math.max(r.pct,100*u/l);r.t.push(fmt(u)+' / '+l+' '+m[1])}});
+if(p.by){r.pct=Math.max(r.pct,100*(Date.now()-p.fit.t)/Math.max(p.by-p.fit.t,1));var d=Math.ceil((p.by-Date.now())/D);r.t.push(d<0?'expired '+(-d)+' days ago':d+' days left')}
+if(!r.t.length)r.t.push('No limits set');r.c=r.pct>=100?'u':r.pct>=80?'w':'';return r}
+function lights(p){var n=Math.min(10,Math.ceil(p/10)),h='<div class="lights" aria-hidden="true">';for(var i=0;i<10;i++)h+='<i'+(i<n?' class="'+(i<6?'g':i<8?'a':'r')+'"':'')+'></i>';return h+'</div>'}
+function partRow(c,p){if(open['x'+p.id])return editPart(c,p);var s=pst(c,p);return'<div class="pt '+s.c+'"><div class="row sp"><b>'+esc(p.name)+'</b><span class="due">'+Math.round(s.pct)+'%</span></div><div class="sub">'+s.t.join(' \u00b7 ')+(p.price?' \u00b7 '+money(p.price):'')+'</div>'+lights(s.pct)+'<div class="row"><button class="sm pri" data-a="repl" data-c="'+c.id+'" data-p="'+p.id+'">Replaced</button><button class="sm" data-a="toggle" data-k="x'+p.id+'">Edit</button><button class="sm x" data-a="delp" data-c="'+c.id+'" data-p="'+p.id+'">Remove</button></div></div>'}
+function taskCard(t){var d=t.due-Date.now(),k=d<0?'u':d<=2*H?'w':'';return'<div class="t '+k+'"><div class="row sp"><b>'+esc(t.title)+'</b><span class="due">'+rel(d)+'</span></div><div class="sub">'+cname(car(t.cid))+' \u00b7 '+new Date(t.due).toLocaleString([], {weekday:'short',hour:'2-digit',minute:'2-digit'})+(t.rep?' \u00b7 repeats every '+t.rep+' h':'')+'</div><div class="row" style="margin-top:6px"><button class="sm pri" data-a="done" data-i="'+t.id+'">Done</button><button class="sm x" data-a="deltask" data-i="'+t.id+'">Delete</button></div></div>'}
+function carOpts(){return S.cars.map(function(c){return'<option value="'+c.id+'">'+cname(c)+'</option>'}).join('')}
+function nowLocal(h){return new Date(Date.now()+h*H-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,16)}
+function taskForm(){if(!S.cars.length)return'<div class="panel">Add a vehicle first, on the Vehicles tab.</div>';return'<div class="panel"><select id="tc">'+carOpts()+'</select><input id="tt" placeholder="Task, e.g. Torque wheel nuts"><input id="td" type="datetime-local" value="'+nowLocal(1)+'"><input id="tr" type="number" min="0" placeholder="Repeat every (hours), 0 = once"><div class="row"><button class="pri" data-a="addtask">Save task</button><button data-a="toggle" data-k="task">Cancel</button></div></div>'}
+function evForm(){if(!S.cars.length)return'<div class="panel">Add a vehicle first, on the Vehicles tab.</div>';return'<div class="panel"><select id="ec">'+carOpts()+'</select><input id="en" placeholder="Event, e.g. Round 4, Monza"><input id="ed" type="datetime-local" value="'+nowLocal(72)+'"><input id="ek" type="number" min="0" placeholder="Planned distance for the event (km)"><label style="display:flex;gap:8px;align-items:center;color:var(--ink)"><input id="eck" type="checkbox" checked style="width:auto"> Add a pre-race checklist (due 3 hours before)</label><div class="row"><button class="pri" data-a="addev">Save event</button><button data-a="toggle" data-k="ev">Cancel</button></div></div>'}
+function nextEvent(){var n=Date.now(),e=S.events.filter(function(e){return e.date>=n-D}).sort(function(a,b){return a.date-b.date})[0];if(!e)return'';var c=car(e.cid),fl=[];
+if(c)c.parts.forEach(function(p){var w=[];if(p.lim&&p.lim.km>0&&e.km){var rem=p.lim.km-(c.km-p.fit.km);if(rem<e.km)w.push(rem<=0?'already past its km limit':'only '+fmt(rem)+' km left, event needs '+fmt(e.km))}if(p.by&&p.by<e.date)w.push('expires before the event');if(w.length)fl.push('<div class="chip u"><b>'+esc(p.name)+'</b><br><span class="sub">'+w.join(', ')+'</span></div>')});
+var d=Math.ceil((e.date-n)/D);
+return'<div class="panel board"><div class="row sp"><h2>Next: '+esc(e.name)+'</h2><button class="sm x" data-a="delev" data-i="'+e.id+'">Delete</button></div><div class="sub">'+cname(c)+' \u00b7 '+new Date(e.date).toLocaleString([], {weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})+(e.km?' \u00b7 '+fmt(e.km)+' km planned':'')+'</div><div class="big">'+(d<=0?'Today':d+' days')+'</div>'+(fl.length?'<div class="sub">Check before this event:</div>'+fl.join(''):'<div class="sub">All parts should last the event.</div>')+'</div>'}
+function sched(){var n=Date.now(),T=S.tasks.slice().sort(function(a,b){return a.due-b.due}),B=[['Due within 2 hours',[]],['Within 24 hours',[]],['Within 48 hours',[]]],risk=[];
+T.forEach(function(t){var d=t.due-n;if(d<=2*H)B[0][1].push(t);else if(d<=24*H)B[1][1].push(t);else if(d<=48*H)B[2][1].push(t)});
+S.cars.forEach(function(c){c.parts.forEach(function(p){var s=pst(c,p);if(s.pct>=80)risk.push({c:c,p:p,s:s})})});risk.sort(function(a,b){return b.s.pct-a.s.pct});
+var crit=risk.filter(function(r){return r.s.pct>=100}),h='';
+if(B[0][1].length||crit.length)h+='<div class="banner" role="alert">'+(B[0][1].length?B[0][1].length+' task(s) due within 2 hours. ':'')+(crit.length?crit.length+' part(s) past their limit: '+crit.map(function(r){return esc(r.p.name)}).join(', '):'')+'</div>';
+h+=nextEvent()+'<div class="row wr" style="margin-bottom:14px">'+(open.task?'':'<button class="pri" data-a="toggle" data-k="task">Add task</button>')+(open.ev?'':'<button data-a="toggle" data-k="ev">Add race event</button>')+'</div>'+(open.task?taskForm():'')+(open.ev?evForm():'');
+B.forEach(function(b){h+='<section><div class="sh"><h2>'+b[0]+'</h2><span class="cnt">'+b[1].length+'</span></div>'+(b[1].length?b[1].map(taskCard).join(''):'<div class="empty">Nothing due here.</div>')+'</section>'});
+h+='<section><div class="sh"><h2>Parts near their limit</h2><span class="cnt">'+risk.length+'</span></div>'+(risk.length?risk.map(function(r){return'<div class="pt '+r.s.c+'"><div class="row sp"><b>'+esc(r.p.name)+'</b><span class="due">'+Math.round(r.s.pct)+'%</span></div><div class="sub">'+cname(r.c)+' \u00b7 '+r.s.t.join(' \u00b7 ')+'</div>'+lights(r.s.pct)+'</div>'}).join(''):'<div class="empty">No parts above 80% of their limit.</div>')+'</section>';
+var t0=new Date();t0.setHours(0,0,0,0);var days='';
+for(var i=0;i<7;i++){var s=t0.getTime()+i*D,e=s+D,L=T.filter(function(t){return(i==0&&t.due<e)||(t.due>=s&&t.due<e)}),EV=S.events.filter(function(x){return x.date>=s&&x.date<e});
+days+='<div class="day'+(i==0?' today':'')+'"><h3>'+new Date(s).toLocaleDateString([], {weekday:'short',day:'numeric',month:'short'})+'</h3>'+EV.map(function(x){return'<div class="chip u"><b>'+esc(x.name)+'</b></div>'}).join('')+L.map(function(t){return'<div class="chip"><b>'+esc(t.title)+'</b><br><span class="sub">'+cname(car(t.cid))+' \u00b7 '+new Date(t.due).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})+'</span></div>'}).join('')+(L.length||EV.length?'':'<div class="empty">Clear</div>')+'</div>'}
+return h+'<section><div class="sh"><h2>Week overview</h2></div><div class="week">'+days+'</div></section>'}
+function sessForm(c){return'<div class="panel" style="margin:0"><input id="st'+c.id+'" placeholder="Track or session, e.g. Practice at Spa"><div class="g2"><label>Distance (km)<input id="sk'+c.id+'" type="number" min="0" step="any"></label><label>Laps<input id="sl'+c.id+'" type="number" min="0"></label><label>Engine hours<input id="sh'+c.id+'" type="number" min="0" step="any"></label><label>Fuel used (L)<input id="sf'+c.id+'" type="number" min="0" step="any"></label><label>Tyre set<select id="sy'+c.id+'"><option value="">None</option>'+(c.tyres||[]).map(function(y){return'<option value="'+y.id+'">'+esc(y.name)+'</option>'}).join('')+'</select></label></div><input id="sp'+c.id+'" placeholder="Tyre pressures, e.g. FL 1.9 FR 1.9 RL 1.8 RR 1.8"><textarea id="sn'+c.id+'" rows="2" placeholder="Notes: balance, setup changes, what to fix"></textarea><div class="row"><button class="pri sm" data-a="addsess" data-c="'+c.id+'">Add to car totals</button><button class="sm" data-a="toggle" data-k="s'+c.id+'">Cancel</button></div></div>'}
+function partForm(c){return'<div class="panel" style="margin:0"><select data-pre="'+c.id+'" aria-label="Example"><option value="">Start from an example</option>'+pre(c).map(function(p,i){return'<option value="'+i+'">'+p[0]+'</option>'}).join('')+'</select><input id="pn'+c.id+'" placeholder="Part name"><div class="g2"><label>Limit (km)<input id="pk'+c.id+'" type="number" min="0"></label><label>Limit (laps)<input id="pl'+c.id+'" type="number" min="0"></label><label>Limit (engine h)<input id="ph'+c.id+'" type="number" min="0" step="any"></label><label>Replace by date<input id="pd'+c.id+'" type="date"></label><label>Price ($)<input id="pp'+c.id+'" type="number" min="0" step="any"></label><label>Already used (km)<input id="pu'+c.id+'" type="number" min="0"></label></div><div class="sub"><b>Example values only.</b> Check the limits with your supplier or manufacturer, and adjust them over time as you learn how the part wears.</div><div class="row"><button class="pri sm" data-a="addp" data-c="'+c.id+'">Add part</button><button class="sm" data-a="toggle" data-k="p'+c.id+'">Cancel</button></div></div>'}
+function fuelLine(c){var f=0,k=0;S.log.forEach(function(x){if(x.cid==c.id&&x.f&&x.k){f+=x.f;k+=x.k}});return k?'<div class="sub">Average fuel use: '+fmt(100*f/k)+' L/100 km</div>':''}
+function tyreForm(c){return'<div class="panel" style="margin:0"><input id="yn'+c.id+'" placeholder="Tyre set, e.g. Slicks set B"><label>Heat cycle limit<input id="yl'+c.id+'" type="number" min="1" value="6"></label><div class="row"><button class="pri sm" data-a="addtyre" data-c="'+c.id+'">Add tyre set</button><button class="sm" data-a="toggle" data-k="y'+c.id+'">Cancel</button></div></div>'}
+function tyreList(c){return(c.tyres||[]).map(function(y){var pc=100*y.heats/y.lim;return'<div class="pt '+(pc>=100?'u':pc>=80?'w':'')+'"><div class="row sp"><b>'+esc(y.name)+'</b><span class="due">'+y.heats+' / '+y.lim+'</span></div><div class="sub">Heat cycles · '+fmt(y.km)+' km on this set</div>'+lights(pc)+'<button class="sm x" data-a="deltyre" data-c="'+c.id+'" data-p="'+y.id+'">Retire set</button></div>'}).join('')}
+function ready(c){var w=0;c.parts.forEach(function(p){w=Math.max(w,pst(c,p).pct)});(c.tyres||[]).forEach(function(y){w=Math.max(w,100*y.heats/y.lim)});return{v:Math.max(0,Math.round(100-w)),c:w>=100?'u':w>=80?'w':''}}
+function editCar(c){return'<div class="panel" style="margin:0"><select id="xct'+c.id+'" aria-label="Vehicle type">'+TY.map(function(t){return'<option value="'+t[0]+'"'+((c.type||'car')==t[0]?' selected':'')+'>'+t[1]+'</option>'}).join('')+'</select><input id="xcn'+c.id+'" value="'+esc(c.name)+'" aria-label="Vehicle name"><div class="g2"><label>Race number<input id="xcu'+c.id+'" value="'+esc(c.num||'')+'"></label><label>Distance (km)<input id="xck'+c.id+'" type="number" min="0" step="any" value="'+c.km+'"></label><label>Laps<input id="xcl'+c.id+'" type="number" min="0" value="'+c.laps+'"></label><label>Engine hours<input id="xch'+c.id+'" type="number" min="0" step="any" value="'+c.hrs+'"></label></div><div class="row"><button class="pri sm" data-a="savec" data-c="'+c.id+'">Save changes</button><button class="sm" data-a="editc" data-c="'+c.id+'">Cancel</button></div></div>'}
+function editPart(c,p){var L=p.lim||{};return'<div class="panel" style="margin:0 0 8px"><input id="xn'+p.id+'" value="'+esc(p.name)+'" aria-label="Part name"><div class="g2"><label>Limit (km)<input id="xk'+p.id+'" type="number" min="0" value="'+(L.km||'')+'"></label><label>Limit (laps)<input id="xl'+p.id+'" type="number" min="0" value="'+(L.laps||'')+'"></label><label>Limit (engine h)<input id="xh'+p.id+'" type="number" min="0" step="any" value="'+(L.hrs||'')+'"></label><label>Replace by date<input id="xd'+p.id+'" type="date" value="'+(p.by?iso(p.by):'')+'"></label><label>Price ($)<input id="xp'+p.id+'" type="number" min="0" step="any" value="'+(p.price||'')+'"></label></div><div class="row"><button class="pri sm" data-a="savep" data-c="'+c.id+'" data-p="'+p.id+'">Save changes</button><button class="sm" data-a="toggle" data-k="x'+p.id+'">Cancel</button></div></div>'}
+function carCard(c){var rd=ready(c),h='<div class="panel car"><div class="num">'+esc(c.num||'')+'</div><div class="row sp"><div class="row"><div class="ring '+rd.c+'" style="--p:'+rd.v+'" title="Readiness"><b>'+rd.v+'</b></div><div><h2>'+esc(c.name)+'</h2><div class="sub">#'+esc(c.num||'-')+' · readiness, '+tname(c)+'</div></div></div><span><button class="sm" data-a="editc" data-c="'+c.id+'">Edit</button> <button class="sm x" data-a="delc" data-c="'+c.id+'">Delete</button></span></div>'+(open['e'+c.id]?editCar(c):'')+'<div class="stat"><div><b>'+fmt(c.km)+'</b><span>km</span></div><div><b>'+fmt(c.laps)+'</b><span>laps</span></div><div><b>'+fmt(c.hrs)+'</b><span>engine h</span></div></div><div class="row wr"><button class="sm pri" data-a="toggle" data-k="s'+c.id+'">Log session</button><button class="sm" data-a="toggle" data-k="p'+c.id+'">Add part</button><button class="sm" data-a="toggle" data-k="y'+c.id+'">Add tyre set</button></div>'+fuelLine(c)+'<textarea data-sn="'+c.id+'" rows="2" placeholder="Setup notes: ride height, camber, aero, gearing">'+esc(c.setup||'')+'</textarea>';
+if(open['s'+c.id])h+=sessForm(c);if(open['p'+c.id])h+=partForm(c);if(open['y'+c.id])h+=tyreForm(c);
+return h+tyreList(c)+(c.parts.length?c.parts.map(function(p){return partRow(c,p)}).join(''):'<div class="empty">No parts yet. Add the parts you want to track.</div>')+'</div>'}
+var NOTE='<div class="panel note"><b>Part limits are examples</b><span class="sub">The example values for parts are only starting points. Always check with your supplier or manufacturer, and adjust the limits over time as you see how each part wears.</span></div>';
+function cars(){var h=open.car?'<div class="panel"><select id="ct" aria-label="Vehicle type">'+TY.map(function(t){return'<option value="'+t[0]+'">'+t[1]+'</option>'}).join('')+'</select><input id="cn" placeholder="Vehicle name, e.g. GT4 Sprint or Kart 7"><div class="g2"><label>Race number<input id="cu"></label><label>Distance so far (km)<input id="ck" type="number" min="0"></label><label>Laps so far<input id="cl" type="number" min="0"></label><label>Engine hours so far<input id="ch" type="number" min="0" step="any"></label></div><div class="row"><button class="pri" data-a="addcar">Add vehicle</button><button data-a="toggle" data-k="car">Cancel</button></div></div>':'<button class="pri" data-a="toggle" data-k="car" style="margin-bottom:14px">Add vehicle</button>';
+return NOTE+h+(S.cars.length?S.cars.map(carCard).join(''):'<div class="empty">No vehicles yet.</div>')}
+function logTab(){var L=S.log.slice().reverse(),tc=0,mc=0,mo=new Date();mo.setDate(1);mo.setHours(0,0,0,0);S.log.forEach(function(x){tc+=x.cost;if(x.t>=mo.getTime())mc+=x.cost});
+return'<div class="panel"><h2>Costs</h2><div class="sub">This month '+money(mc)+' \u00b7 All time '+money(tc)+'</div><div class="row wr"><button class="sm" data-a="backup">Backup</button><button class="sm x" data-a="clear">Clear all data</button></div><label>Restore from a backup file<input type="file" accept=".json,application/json" id="rst"></label></div><div class="panel"><h2>History</h2>'+(L.length?L.map(function(x){return'<div class="hist"><span>'+esc(x.txt)+(x.note?'<br><span class="sub">'+esc(x.note)+'</span>':'')+'<br><span class="sub">'+cname(car(x.cid))+' \u00b7 '+new Date(x.t).toLocaleString()+'</span></span><span>'+(x.cost?money(x.cost):'')+'</span></div>'}).join(''):'<div class="empty">Nothing logged yet. Sessions, replaced parts and finished tasks show up here.</div>')+'</div>'}
+function render(){document.getElementById('app').innerHTML=view=='s'?sched():view=='c'?cars():logTab();document.querySelectorAll('nav button').forEach(function(b){b.classList.toggle('on',b.dataset.v==view)})}
+function beep(){if(!sound||!ctx)return;try{[0,.25,.5].forEach(function(o){var s=ctx.createOscillator(),k=ctx.createGain();s.frequency.value=880;k.gain.value=.15;s.connect(k);k.connect(ctx.destination);s.start(ctx.currentTime+o);s.stop(ctx.currentTime+o+.15)})}catch(e){}}
+function check(){var hit=0;S.tasks.forEach(function(t){if(t.due-Date.now()<=2*H&&!beeped['t'+t.id]){beeped['t'+t.id]=1;hit=1}});S.cars.forEach(function(c){c.parts.forEach(function(p){if(pst(c,p).pct>=100&&!beeped['p'+p.id]){beeped['p'+p.id]=1;hit=1}})});if(hit)beep()}
+document.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+if(b.dataset.v){view=b.dataset.v;render();return}
+if(b.id=='snd'){sound=!sound;b.textContent=sound?'Sound on':'Sound off';if(sound){try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();beep()}catch(x){}}return}
+var a=b.dataset.a,cid=b.dataset.c,pid=b.dataset.p,i=b.dataset.i;if(!a)return;
+if(/^(delc|delp|deltask|delev|repl|clear|deltyre)$/.test(a)){var key=a+(cid||'')+(pid||'')+(i||'');if(arm!=key){arm=key;b.textContent='Tap again to confirm';setTimeout(function(){if(arm==key){arm=null;render()}},4000);return}arm=null}
+var c=cid?car(cid):null;
+if(a=='toggle')open[b.dataset.k]=!open[b.dataset.k];
+if(a=='addtyre'){var yn=g('yn'+cid).trim();if(!yn){msg('Enter a tyre set name.');return}(c.tyres=c.tyres||[]).push({id:uid(),name:yn,lim:+g('yl'+cid)||6,heats:0,km:0});open['y'+cid]=false}
+if(a=='deltyre')c.tyres=c.tyres.filter(function(y){return y.id!=pid});
+if(a=='editc')open['e'+cid]=!open['e'+cid];
+if(a=='savec'){var cn=g('xcn'+cid).trim();if(!cn){msg('Enter a vehicle name.');return}c.type=g('xct'+cid);c.name=cn;c.num=g('xcu'+cid).trim();c.km=+g('xck'+cid)||0;c.laps=+g('xcl'+cid)||0;c.hrs=+g('xch'+cid)||0;open['e'+cid]=false;beeped={}}
+if(a=='savep'){var pq=c.parts.find(function(p){return p.id==pid}),px=g('xn'+pid).trim();if(!px){msg('Enter a part name.');return}pq.name=px;pq.lim={};[['xk','km'],['xl','laps'],['xh','hrs']].forEach(function(f){var v=+g(f[0]+pid);if(v>0)pq.lim[f[1]]=v});pq.by=dms(g('xd'+pid));pq.price=+g('xp'+pid)||0;open['x'+pid]=false;beeped={}}
+if(a=='addcar'){var n=g('cn').trim();if(!n){msg('Enter a vehicle name first.');return}S.cars.push({id:uid(),type:g('ct'),name:n,num:g('cu').trim(),km:+g('ck')||0,laps:+g('cl')||0,hrs:+g('ch')||0,parts:[]});open.car=false}
+if(a=='delc'){S.cars=S.cars.filter(function(x){return x.id!=cid});S.tasks=S.tasks.filter(function(t){return t.cid!=cid});S.events=S.events.filter(function(t){return t.cid!=cid})}
+if(a=='addsess'){var k=+g('sk'+cid)||0,l=+g('sl'+cid)||0,h=+g('sh'+cid)||0,fu=+g('sf'+cid)||0;if(!k&&!l&&!h){msg('Enter distance, laps or engine hours.');return}c.km+=k;c.laps+=l;c.hrs+=h;var ty=(c.tyres||[]).find(function(y){return y.id==g('sy'+cid)});if(ty){ty.heats+=1;ty.km+=k}var pr=g('sp'+cid).trim(),nt=g('sn'+cid).trim();logIt(c.id,'Session: '+(g('st'+cid).trim()||'untitled')+' ('+fmt(k)+' km, '+l+' laps, '+fmt(h)+' h'+(fu?', '+fmt(fu)+' L fuel':'')+(ty?', tyres '+ty.name:'')+')',0);var le=S.log[S.log.length-1];le.f=fu;le.k=k;le.note=[pr&&'Pressures: '+pr,nt].filter(Boolean).join(' · ');open['s'+cid]=false;beeped={}}
+if(a=='addp'){var nm=g('pn'+cid).trim();if(!nm){msg('Enter a part name first.');return}var lim={},v;[['pk','km'],['pl','laps'],['ph','hrs']].forEach(function(f){v=+g(f[0]+cid);if(v>0)lim[f[1]]=v});var by=dms(g('pd'+cid)),pre=+g('pu'+cid)||0;c.parts.push({id:uid(),name:nm,fit:{km:c.km-pre,laps:c.laps,hrs:c.hrs,t:Date.now()},lim:lim,by:by,price:+g('pp'+cid)||0});open['p'+cid]=false}
+if(a=='delp')c.parts=c.parts.filter(function(p){return p.id!=pid});
+if(a=='repl'){var p=c.parts.find(function(p){return p.id==pid}),iv=p.by?p.by-p.fit.t:0,t=Date.now();p.fit={km:c.km,laps:c.laps,hrs:c.hrs,t:t};if(iv)p.by=t+iv;logIt(c.id,'Replaced '+p.name,p.price||0);delete beeped['p'+pid]}
+if(a=='addtask'){var tt=g('tt').trim(),td=new Date(g('td')).getTime();if(!tt||isNaN(td)){msg('Enter a task title and a due time.');return}S.tasks.push({id:uid(),cid:+g('tc'),title:tt,due:td,rep:+g('tr')||0});open.task=false}
+if(a=='deltask')S.tasks=S.tasks.filter(function(t){return t.id!=i});
+if(a=='done'){var tk=S.tasks.find(function(t){return t.id==i});logIt(tk.cid,'Task done: '+tk.title,0);if(tk.rep>0){while(tk.due<=Date.now())tk.due+=tk.rep*H;delete beeped['t'+tk.id]}else S.tasks=S.tasks.filter(function(t){return t.id!=i})}
+if(a=='addev'){var en=g('en').trim(),ed=new Date(g('ed')).getTime();if(!en||isNaN(ed)){msg('Enter an event name and a date.');return}S.events.push({id:uid(),cid:+g('ec'),name:en,date:ed,km:+g('ek')||0});if(document.getElementById('eck').checked){(CK[(car(g('ec'))||{}).type||'car']||CK.car).forEach(function(x,k){S.tasks.push({id:uid()+(k+1)*1e6,cid:+g('ec'),title:x,due:ed-3*H,rep:0})})}open.ev=false}
+if(a=='delev')S.events=S.events.filter(function(x){return x.id!=i});
+if(a=='backup'){var u=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'})),l=document.createElement('a');l.href=u;l.download='racing-wearline-backup.json';document.body.appendChild(l);l.click();l.remove();msg('Backup downloaded.');return}
+if(a=='clear'){S={cars:[],tasks:[],events:[],log:[]};msg('All data cleared.')}
+save();render()});
+document.addEventListener('change',function(e){var t=e.target;
+if(t.dataset.pre){var c=t.dataset.pre,pr=pre(car(c))[t.value];if(!pr)return;document.getElementById('pn'+c).value=pr[0];document.getElementById('pk'+c).value=pr[1].km||'';document.getElementById('pl'+c).value=pr[1].laps||'';document.getElementById('ph'+c).value=pr[1].hrs||'';document.getElementById('pd'+c).value=pr[1].days?iso(Date.now()+pr[1].days*D):''}
+if(t.dataset.sn){car(t.dataset.sn).setup=t.value;save()}
+if(t.id=='rst'&&t.files[0]){var fr=new FileReader();fr.onload=function(){try{var o=JSON.parse(String(fr.result));if(!o.cars)throw 0;S=o;fix();save();render();msg('Backup restored.')}catch(x){msg('That file is not a Wearline backup.')}};fr.readAsText(t.files[0])}});
+setInterval(function(){var f=document.activeElement,busy=Object.keys(open).some(function(k){return open[k]})||(f&&/INPUT|SELECT|TEXTAREA/.test(f.tagName));if(!busy)render();check()},30000);
+render();check();
+</script></body></html>
